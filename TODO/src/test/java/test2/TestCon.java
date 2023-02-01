@@ -1,4 +1,4 @@
-package test;
+package test2;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;

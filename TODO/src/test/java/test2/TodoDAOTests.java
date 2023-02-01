@@ -1,4 +1,4 @@
-package test;
+package test2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,5 +21,11 @@ class TodoDAOTests {
 		
 		System.out.println(todoDAO.getTime());
 	}
+	
+//	@Test
+//	public void testTime2() throws Exception {
+//		
+//		System.out.println(todoDAO.getTime2());
+//	}
 
 }

@@ -1,19 +1,21 @@
-package dao;
+package testtest;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
+
+import org.junit.jupiter.api.Test;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public enum ConnectionUtil {
-	INSTANCE;
+class TestCon {
+
+
 	
-	private HikariDataSource ds;
-	
-	ConnectionUtil() {
+	@Test
+	public void testHikariCP() throws Exception {
 		
-	
-	HikariConfig config = new HikariConfig();
+		HikariConfig config = new HikariConfig();
 		config.setDriverClassName("org.mariadb.jdbc.Driver");
 		config.setJdbcUrl("jdbc:mariadb://localhost:5000/testcode");
 		config.setUsername("root");
@@ -22,10 +24,12 @@ public enum ConnectionUtil {
 		config.addDataSourceProperty("prepStmtCacheSize", "250");
 		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 		
-		 ds = new HikariDataSource(config);
+		HikariDataSource ds = new HikariDataSource(config);
+		Connection connection = ds.getConnection();
+		
+		System.out.println(connection);
+		
+		connection.close();
 	}
-	
-	public Connection getConnection() throws Exception {
-		return ds.getConnection();
-	}
+
 }
