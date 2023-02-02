@@ -112,7 +112,7 @@ public class TodoDAO {
     
     public void updateOne(TodoVO todoVO) throws Exception {
     	
-    	String sql = "update tbl_todo set title =?, dueDate =?, finished =?, where tno = ?";
+    	String sql = "update tbl_todo set title = ?, dueDate = ?, finished = ? where tno = ?";
     	
     	@Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
