@@ -114,4 +114,20 @@ public class OrderDAO {
 	    }
     	return flag != 0;
     }
+    
+    public boolean updateOrderInfoWhenProcessSuccess(OrderInfoDTO dto) {
+    	// 성공시에 주문 정보 업데이트
+    	int flag = 0;
+    	String sql = "UPDATE ORDER_INFO SET payMethod = ?, orderStep = ?, datePay = now() WHERE orderNo = ?";
+    	try (Connection conn = DBConnection.getConnection();
+    		 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    		pstmt.setString(1, dto.getPayMethod());
+    		pstmt.setString(2, dto.getOrderStep());
+    		pstmt.setString(3, dto.getOrderNo());
+    		flag = pstmt.executeUpdate();
+    	} catch (Exception ex) {
+    		System.out.println("updateOrderInfoWhenProcessSuccess() 에러 : " + ex);
+    	}
+    	return flag == 1;
+    }
 }
